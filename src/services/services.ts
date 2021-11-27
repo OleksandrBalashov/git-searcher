@@ -9,13 +9,12 @@ const getUsers = async (userName: string) => {
   try {
     const {
       data: { items },
-    } = await axios.get(`search/users`, {
+    } = await axios.get(`/search/users`, {
       params: {
         q: userName,
       },
     });
 
-    console.log(items);
     return items;
   } catch (err) {
     console.log(err);

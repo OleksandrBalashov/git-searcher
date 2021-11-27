@@ -92,7 +92,7 @@ const Details = () => {
     fetchUserRepos(userName);
   }, [userName, getLocation]);
 
-  if (repos.length <= 0) {
+  if (repos.length === 0) {
     return <Spinner />;
   }
 
@@ -112,7 +112,7 @@ const Details = () => {
               <h2 className="details__title">{login}</h2>
               <p className="details__text">
                 <span>Email: </span>
-                {user.email ? email : 'unknown'}
+                {email ? email : 'unknown'}
               </p>
               <p className="details__text">
                 <span>Location: </span>

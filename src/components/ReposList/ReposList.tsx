@@ -13,6 +13,7 @@ interface IReposProps {
 }
 
 const ReposList = ({ repos }: IReposProps) => {
+  console.log(repos);
   return (
     <ul className="repos__list">
       {repos.length > 0 &&
