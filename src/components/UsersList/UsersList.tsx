@@ -6,29 +6,34 @@ interface IUser {
   avatar_url: string;
   public_repos: number;
   login: string;
+  id: number;
 }
 
 interface Props {
-  user: IUser;
+  users: IUser[];
 }
 
-const UserList = ({ user }: Props) => {
-  const { avatar_url, name, public_repos, login } = user;
-
+const UsersList = ({ users }: Props) => {
   return (
-    <NavLink
-      to={{
-        pathname: `/details/${login}`,
-      }}
-      className="userList__link"
-    >
-      <img src={avatar_url} alt={name} width="80" height="80" />
-      <div className="userList__wrap">
-        <p className="userList__name">{name}</p>
-        <p className="userList__repo">Repo: {public_repos}</p>
-      </div>
-    </NavLink>
+    <ul className="userList">
+      {users.map(({ login, avatar_url, name, public_repos, id }) => (
+        <li key={id}>
+          <NavLink
+            to={{
+              pathname: `/details/${login}`,
+            }}
+            className="userList__link"
+          >
+            <img src={avatar_url} alt={login} width="80" height="80" />
+            <div className="userList__wrap">
+              <p className="userList__name">{login}</p>
+              <p className="userList__repo">Repo: {public_repos}</p>
+            </div>
+          </NavLink>
+        </li>
+      ))}
+    </ul>
   );
 };
 
-export default UserList;
+export default UsersList;

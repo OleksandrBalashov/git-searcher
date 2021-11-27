@@ -23,6 +23,7 @@ const initialState = {
   email: '',
   location: '',
   created_at: '',
+  login: '',
 };
 
 const Details = () => {
@@ -42,6 +43,7 @@ const Details = () => {
     followers,
     following,
     bio,
+    login,
   } = user;
 
   const fetchUser = async (userName: string) => {
@@ -107,7 +109,7 @@ const Details = () => {
               className="detail__img"
             />
             <div className="details__wrapper--info">
-              <h2 className="details__title">{name}</h2>
+              <h2 className="details__title">{login}</h2>
               <p className="details__text">
                 <span>Email: </span>
                 {user.email ? email : 'unknown'}

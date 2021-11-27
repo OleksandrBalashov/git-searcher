@@ -1,20 +1,12 @@
 import { useEffect, useState } from 'react';
 import Form from '../components/Form';
-import UserList from '../components/UsersList/UsersList';
-import { getUser } from '../services/services';
+import UsersList from '../components/UsersList/UsersList';
+import { getUsers } from '../services/services';
 import './styles/Home.scss';
-
-const initialState = {
-  name: '',
-  avatar_url: '',
-  public_repos: 0,
-  id: 0,
-  login: '',
-};
 
 const Home = () => {
   const [query, setQuery] = useState('');
-  const [user, setUser] = useState(initialState);
+  const [users, setUsers] = useState([]);
   const [error, setError] = useState(false);
 
   const submitForm = (value: string) => {
@@ -32,11 +24,11 @@ const Home = () => {
     const fetchUser = async (query: string | null) => {
       if (query === null) return;
 
-      const data = await getUser(query);
+      const data = await getUsers(query);
 
       if (!data) {
         setError(true);
-        setUser(initialState);
+        setUsers([]);
 
         // the timer works if user does't exist and remove "Not found" text
         timer = setTimeout(() => {
@@ -46,7 +38,7 @@ const Home = () => {
         return;
       }
 
-      setUser(data);
+      setUsers(data);
     };
 
     if (query) {
@@ -65,7 +57,7 @@ const Home = () => {
       <h1 className="home__title">GitHub Searcher</h1>
       <Form placeholderText="Search for Users" submitForm={submitForm} />
       {error && <h1 className="notFound">Not found</h1>}
-      {user.name && <UserList user={user} />}
+      {users.length > 0 && <UsersList users={users} />}
     </div>
   );
 };
