@@ -1,0 +1,38 @@
+.details__container {
+  box-shadow: 4px 4px 8px 6px rgba(34, 60, 80, 0.2);
+  padding-bottom: 30px;
+
+  .details {
+    padding: 20px;
+  }
+
+  .details__bio {
+    margin-bottom: 30px;
+
+    span {
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+}
+
+.details__wrapper {
+  display: flex;
+
+  .detail__img {
+    margin-right: 30px;
+  }
+
+  .details__title {
+    font-size: 30px;
+  }
+
+  .details__text span {
+    font-size: 18px;
+    font-weight: 500;
+  }
+}
+
+.details__notFound {
+  text-align: center;
+}

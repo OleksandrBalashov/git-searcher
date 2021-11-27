@@ -1,0 +1,38 @@
+.repos__list {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.repos__list--item {
+  border-top: 1px solid rgba(0, 0, 0, 0.3);
+
+  &:last-child {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  }
+
+  .repos__item--link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 5px 20px;
+    color: #000;
+
+    &:hover {
+      color: rgb(18, 156, 156);
+    }
+  }
+
+  .repos__item--title {
+    text-transform: capitalize;
+    margin: 0;
+  }
+
+  .repos__item--wrap {
+    margin-left: auto;
+
+    .repos__item--text {
+      margin: 0;
+    }
+  }
+}

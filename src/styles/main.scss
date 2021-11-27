@@ -1,0 +1,23 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: Montserrat, sans-serif;
+}
+
+.container {
+  max-width: 940px;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.Loader {
+  text-align: center;
+}
