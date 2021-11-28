@@ -95,6 +95,10 @@ const Details = () => {
     fetchUserRepos(userName);
   }, [userName, getLocation]);
 
+  if (name === '') {
+    return <Spinner />;
+  }
+
   return (
     <>
       {name !== '' && (
