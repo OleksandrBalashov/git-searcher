@@ -23,15 +23,9 @@ const getUsers = async (userName: string) => {
 
 const getUserRepos = async (userName: string) => {
   try {
-    const {
-      data: { items },
-    } = await axios.get(`/search/repositories`, {
-      params: {
-        q: userName,
-      },
-    });
+    const { data } = await axios.get(`/users/${userName}/repos`);
 
-    return items;
+    return data;
   } catch (err) {
     console.log(err);
   }

@@ -26,7 +26,7 @@ const Home = () => {
 
       const data = await getUsers(query);
 
-      if (!data) {
+      if (!data || data.length === 0) {
         setError(true);
         setUsers([]);
 
