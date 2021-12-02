@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import Form from '../components/Form';
 import ReposList from '../components/ReposList';
@@ -32,7 +32,7 @@ const Details = () => {
   const [user, setUser] = useState(initialState);
   const [repos, setRepos] = useState<IRepos[]>([]);
   const [error, setError] = useState(false);
-  const [filteredRepos, setFrilteredRepos] = useState<IRepos[]>([]);
+  const [filter, setFilter] = useState('');
 
   const {
     avatar_url,
@@ -69,16 +69,21 @@ const Details = () => {
     const normalizedValue = value.toLocaleLowerCase();
     setError(false);
 
-    const filterRepos = repos.filter(({ name }) =>
-      name.toLowerCase().includes(normalizedValue)
+    setFilter(normalizedValue);
+  };
+
+  const filterRepos = useMemo(() => {
+    const filterRep = repos.filter(({ name }) =>
+      name.toLowerCase().includes(filter)
     );
 
-    if (filterRepos.length === 0) {
+    if (filter && filterRep.length === 0) {
       setError(true);
+      return [];
     }
 
-    setFrilteredRepos(filterRepos);
-  };
+    return filterRep;
+  }, [repos, filter]);
 
   useEffect(() => {
     if (userName) return;
@@ -146,11 +151,9 @@ const Details = () => {
               </h3>
             )}
           </div>
-          {repos.length === 0 && !error && <Spinner />}
-          {repos.length > 0 && !error && (
-            <ReposList
-              repos={filteredRepos.length > 0 ? filteredRepos : repos}
-            />
+          {filterRepos.length === 0 && !error && <Spinner />}
+          {filterRepos.length > 0 && !error && (
+            <ReposList repos={filterRepos} />
           )}
         </div>
       )}
